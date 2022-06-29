@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>Vue Mastery</title>
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <h1>Product goes here</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.30/vue.global.min.js"></script>
+</head>
+
+<body>
+    <div id="mainDiv">
+        <div class="nav-bar"></div>
+
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <!-- Image goes here -->
+                    <!-- <img v-bind:src="image"> -->
+                    <img :src="image">
+                </div>
+                <div class="product-info">
+                    <h1>{{ product }}</h1>
+                    <p v-if="inventory > 10">In Stock</p>
+                    <p v-else-if=" inventory <= 10 && inventory > 0">Hurry!!! Almost Sold Out!!!</p>
+                    <p v-else>Out of Stock</p>
+                    <ul>
+                        <li v-for="detail in details">{{ detail }}</li>
+                    </ul>
+                    <div v-for="varient in varients" :key="varient.id">
+                        <!-- ID: {{ varient.id }} -->
+                        Color: {{ varient.color }}
+                    </div>
+                    <!-- <p>{{ productDescription }}</p> -->
+                    <!-- <a :href="url">Vue JS Course</a> -->
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Import Js -->
+    <!-- Import App -->
     <script src="./main.js"></script>
-  </body>
+
+    <!-- Mount App -->
+    <script>
+        const mountedApp = app.mount('#mainDiv')
+    </script>
+</body>
+
 </html>
